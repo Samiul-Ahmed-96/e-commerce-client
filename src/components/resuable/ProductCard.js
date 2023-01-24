@@ -2,7 +2,8 @@ import React from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router";
-import { addToCart } from "../../features/cart/cartSlice";
+import { Link } from "react-router-dom";
+import { addToCart, removeFromCart } from "../../features/cart/cartSlice";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -26,28 +27,29 @@ const ProductCard = ({ product }) => {
       <div className="flex justify-center gap-2 my-5">
         {pathname.includes("cart") ? (
           <button
-            onClick={() => dispatch(addToCart(product))}
+            onClick={() => dispatch(removeFromCart(product))}
             className="bg-red-500 rounded-full py-1 px-2 flex items-center text-white text-bold"
           >
+          <BiMinus className="text-white" size={25} />
             Remove from cart
-            <BiMinus className="text-white" size={25} />
+           
           </button>
         ) : (
           <button
             onClick={() => dispatch(addToCart(product))}
             className="bg-blue-500 rounded-full py-1 px-2 flex items-center text-white text-bold"
           >
+          <BiPlus className="text-white" size={25} />
             Add to cart
-            <BiPlus className="text-white" size={25} />
+            
           </button>
         )}
-
-        <button
-          title="Show Details"
-          className="bg-blue-500  py-1 px-2 rounded-full flex items-center text-white"
-        >
-          Details
-        </button>
+        <Link to={`/product/${product._id}`}>
+          <button
+            title="Show Details"
+            className="bg-blue-500  py-1 px-2 rounded-full flex items-center text-white"
+          >Details</button>
+        </Link>
       </div>
     </div>
   );

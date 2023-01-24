@@ -1,9 +1,15 @@
 import React from "react";
 import { BiLogInCircle, BiRegistered } from "react-icons/bi";
 import { BsFillCartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+
+
 const Navbar = () => {
+
+  const cart = useSelector((state) => state.cart.cart);
+
   return (
     <nav className="h-14 container bg-blue-200 rounded m-2 mx-auto px-5">
       <ul className="h-full  mx-auto flex justify-between items-center gap-3 font-semibold text-blue-900">
@@ -32,8 +38,9 @@ const Navbar = () => {
             </li>
           </Link>
           <Link to="/cart">
-            <li title="cart" className="bg-blue-500 p-2 rounded-full">
+            <li title="cart" className="bg-blue-500 p-2 relative rounded-full">
               <BsFillCartFill className="text-white " />
+              <span className="absolute right-0 bg-white rounded-full flex justify-center items-center w-4 top-[-10px] text-[10px]">{cart.length}</span>
             </li>
           </Link>
         </ul>
