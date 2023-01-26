@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { usePostProductMutation } from "../../features/product/productApi";
 
 const AddProduct = () => {
   const { register, handleSubmit } =  useForm();
+  const [postProduct , {isSuccess}] = usePostProductMutation();
 
 
   const submit = (data) => {
@@ -19,9 +22,16 @@ const AddProduct = () => {
       ],
       spec: [],
     };
-    console.log(product);
-
+    postProduct(product);
   };
+
+
+  useEffect(()=>{
+    if(isSuccess){
+        toast("Product Added Successfully")
+    }
+  },[isSuccess])
+  
 
   return (
     <div className='flex justify-center items-center h-full '>

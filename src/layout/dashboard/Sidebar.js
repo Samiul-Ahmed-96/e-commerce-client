@@ -20,7 +20,7 @@ const Sidebar = () => {
             <FaChevronLeft />
             <h1>Back</h1>
           </Link>
-          <h1 className="text-xl">Dashboard</h1>
+          <h1 className="text-xl font-bold text-blue-900">Dashboard</h1>
         </div>
         {
           employerRoutes.map(({ name, path }) => (

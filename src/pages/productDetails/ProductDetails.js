@@ -80,6 +80,7 @@ const ProductDetails = () => {
     );
   }
 
+
   return (
    <>
     {content}
